@@ -1,6 +1,4 @@
 package ru.fourgotten.VoxileSecurity;
-import ru.fourgotten.VoxileSecurity.Hacks.BinaryClassLoader;
-import ru.fourgotten.VoxileSecurity.Hacks.HacksApplicator;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,6 +7,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import ru.fourgotten.VoxileSecurity.Data.MessagesWrapper.MessageWrappedGame;
+import ru.fourgotten.VoxileSecurity.Hacks.BinaryClassLoader;
+import ru.fourgotten.VoxileSecurity.Hacks.HacksApplicator;
 import ru.methuselah.authlib.GlobalReplacementList;
 
 public class WrappedGameStarter

@@ -1,9 +1,9 @@
 package ru.fourgotten.VoxileSecurity.Hacks;
-import ru.methuselah.authlib.ReplacementListEntrySF;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
+import ru.methuselah.authlib.ReplacementListEntrySF;
 
 public class HackPrivateStaticURLs
 {
@@ -28,6 +28,8 @@ public class HackPrivateStaticURLs
 					}
 					if(fieldClass.equals(URL.class))
 						targetField.set(null, new URL(replaceTask.newValue));
+					if(fieldClass.equals(String.class))
+						targetField.set(null, replaceTask.newValue);
 					if(originalFinal)
 					{
 						modifiersField.setInt(targetField, targetField.getModifiers() | Modifier.FINAL);
