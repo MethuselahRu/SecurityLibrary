@@ -2,10 +2,10 @@
 			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>ru.fourgotten.VoxileSecurity</name>
-	<groupId>ru.fourgotten</groupId>
-	<artifactId>VoxileSecurity</artifactId>
-	<version>0.14a</version>
+	<name>ru.methuselah.securitylibrary</name>
+	<groupId>ru.methuselah</groupId>
+	<artifactId>securitylibrary</artifactId>
+	<version>0.15a</version>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -28,12 +28,12 @@
 		<dependency>
 			<groupId>ru.methuselah</groupId>
 			<artifactId>authlib</artifactId>
-			<version>0.14a</version>
+			<version>0.15a</version>
 		</dependency>
 		<dependency>
 			<groupId>ru.methuselah</groupId>
 			<artifactId>serversideplugin-api</artifactId>
-			<version>0.14a</version>
+			<version>0.15a</version>
 			<type>jar</type>
 		</dependency>
 	</dependencies>
