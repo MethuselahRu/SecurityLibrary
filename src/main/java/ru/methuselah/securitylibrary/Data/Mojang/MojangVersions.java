@@ -1,4 +1,4 @@
-package ru.methuselah.securitylibrary.Data.GameFiles;
+package ru.methuselah.securitylibrary.Data.Mojang;
 
 public class MojangVersions
 {

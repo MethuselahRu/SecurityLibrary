@@ -1,4 +1,5 @@
 package ru.methuselah.securitylibrary.Defaults;
+
 import java.awt.Color;
 import ru.methuselah.securitylibrary.Data.MessagesLauncher.AnswerLauncherDesign;
 
