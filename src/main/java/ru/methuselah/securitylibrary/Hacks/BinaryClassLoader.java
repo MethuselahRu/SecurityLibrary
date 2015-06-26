@@ -1,4 +1,5 @@
 package ru.methuselah.securitylibrary.Hacks;
+
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Arrays;
@@ -12,19 +13,20 @@ public class BinaryClassLoader extends URLClassLoader
 	{
 		super(urls, parent);
 	}
-	public void addClass(String fqdn, byte[] binary)
+	public void addClass(String fqdn, byte[] definition)
 	{
-		this.extraClassDefs.put(fqdn, Arrays.copyOf(binary, binary.length));
+		this.extraClassDefs.put(fqdn, Arrays.copyOf(definition, definition.length));
 	}
 	public void addClasses(Map<String, byte[]> definitions)
 	{
-		for(Map.Entry<String, byte[]> definition : definitions.entrySet())
-			this.extraClassDefs.put(definition.getKey(), Arrays.copyOf(definition.getValue(), definition.getValue().length));
+		this.extraClassDefs.putAll(definitions);
 	}
 	@Override
 	protected Class<?> findClass(final String name) throws ClassNotFoundException
 	{
 		final byte[] classBytes = this.extraClassDefs.get(name);
-		return (classBytes != null) ? defineClass(name, classBytes, 0, classBytes.length) : super.findClass(name);
+		return classBytes != null
+			? defineClass(name, classBytes, 0, classBytes.length)
+			: super.findClass(name);
 	}
 }

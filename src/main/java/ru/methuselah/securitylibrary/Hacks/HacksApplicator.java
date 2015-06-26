@@ -1,9 +1,9 @@
 package ru.methuselah.securitylibrary.Hacks;
 
 import com.mojang.authlib.properties.Property;
+import ru.methuselah.authlib.links.GlobalReplacementList;
+import ru.methuselah.authlib.methods.WebMethodCaller;
 import ru.methuselah.securitylibrary.Data.MessagesWrapper.MessageWrappedGame;
-import ru.methuselah.authlib.GlobalReplacementList;
-import ru.methuselah.authlib.MethuselahMethods;
 
 public final class HacksApplicator
 {
@@ -16,7 +16,7 @@ public final class HacksApplicator
 		// Замена класса Свойства на свой с вырезанной проверкой цифровой подписи
 		Property.class.getCanonicalName();
 		// Обманка для подключения по https к серверу с косяченным сертификатом
-		MethuselahMethods.hackSSL();
+		WebMethodCaller.hackSSL();
 		// Замена статических полей с URL скриптов
 		HackPrivateStaticURLs.process(grl.replacementsSF, classLoader);
 		// Внедрение подменщика URL адресов, для которых устанавливается соединение

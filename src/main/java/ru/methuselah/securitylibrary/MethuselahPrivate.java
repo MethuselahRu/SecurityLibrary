@@ -1,16 +1,14 @@
 package ru.methuselah.securitylibrary;
 
-import ru.methuselah.securitylibrary.Data.Methuselah.ListClientsResponse;
-import ru.methuselah.securitylibrary.Data.Methuselah.ListProjectsResponse;
-import ru.methuselah.securitylibrary.Data.Methuselah.ProfileInfoPayload;
-import ru.methuselah.securitylibrary.Data.Methuselah.ProfileInfoResponse;
-import ru.methuselah.authlib.MethuselahMethods;
-import ru.methuselah.authlib.exceptions.ResponseException;
+import ru.methuselah.authlib.methods.ResponseException;
+import ru.methuselah.authlib.methods.WebMethodCaller;
 import ru.methuselah.securitylibrary.Data.MessagesLauncher.AnswerLauncherClients;
 import ru.methuselah.securitylibrary.Data.MessagesLauncher.AnswerLauncherProjects;
 import ru.methuselah.securitylibrary.Data.MessagesLauncher.MessageLauncherGetClients;
+import ru.methuselah.securitylibrary.Data.Methuselah.ProfileInfoPayload;
+import ru.methuselah.securitylibrary.Data.Methuselah.ProfileInfoResponse;
 
-public class MethuselahPrivate extends MethuselahMethods
+public class MethuselahPrivate extends WebMethodCaller
 {
 	public static final String urlProfileInfo  = urlBase + "api/profile.php";
 	public static final String urlListProjects = urlBase + "toolbox/listProjects.php";

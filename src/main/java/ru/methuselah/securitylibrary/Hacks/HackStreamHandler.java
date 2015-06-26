@@ -1,4 +1,5 @@
 package ru.methuselah.securitylibrary.Hacks;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -15,9 +16,9 @@ import java.security.cert.X509Certificate;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.X509TrustManager;
+import ru.methuselah.authlib.links.GlobalReplacementList;
+import ru.methuselah.authlib.links.ReplacementListEntrySH;
 import ru.methuselah.securitylibrary.ProGuardKeep;
-import ru.methuselah.authlib.GlobalReplacementList;
-import ru.methuselah.authlib.ReplacementListEntrySH;
 
 @ProGuardKeep
 public class HackStreamHandler extends URLStreamHandler

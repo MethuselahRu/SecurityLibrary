@@ -1,5 +1,5 @@
 package ru.methuselah.securitylibrary.Data.MessagesPlugin;
-import ru.methuselah.authlib.GlobalReplacementList;
+import ru.methuselah.authlib.links.GlobalReplacementList;
 
 public class AnswerPluginEnabled
 {

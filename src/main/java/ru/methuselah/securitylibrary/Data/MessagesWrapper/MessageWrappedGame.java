@@ -1,5 +1,5 @@
 package ru.methuselah.securitylibrary.Data.MessagesWrapper;
-import ru.methuselah.authlib.GlobalReplacementList;
+import ru.methuselah.authlib.links.GlobalReplacementList;
 
 public class MessageWrappedGame
 {

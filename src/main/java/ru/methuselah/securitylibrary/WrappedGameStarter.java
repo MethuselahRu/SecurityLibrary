@@ -6,10 +6,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import ru.methuselah.authlib.links.GlobalReplacementList;
 import ru.methuselah.securitylibrary.Data.MessagesWrapper.MessageWrappedGame;
 import ru.methuselah.securitylibrary.Hacks.BinaryClassLoader;
 import ru.methuselah.securitylibrary.Hacks.HacksApplicator;
-import ru.methuselah.authlib.GlobalReplacementList;
 
 public class WrappedGameStarter
 {

@@ -1,4 +1,5 @@
 package ru.methuselah.securitylibrary.Hacks;
+
 import java.lang.reflect.Field;
 
 public class HackClassPath
