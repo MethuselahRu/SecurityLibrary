@@ -1,13 +1,13 @@
 package ru.methuselah.securitylibrary.Defaults;
 
 import java.awt.Color;
-import ru.methuselah.securitylibrary.Data.MessagesLauncher.AnswerLauncherDesign;
+import ru.methuselah.securitylibrary.Data.Launcher.LauncherAnswerDesign;
 
 public class DefaultLauncherDesign
 {
-	public static AnswerLauncherDesign getDefaultVoxileDesign()
+	public static LauncherAnswerDesign getDefaultVoxileDesign()
 	{
-		final AnswerLauncherDesign result = new AnswerLauncherDesign();
+		final LauncherAnswerDesign result = new LauncherAnswerDesign();
 		// Main frame
 		result.frameLauncherMain.background.pngHashNormal = "hash hash, hash hash";
 		result.frameLauncherMain.background.сolorNormal = new Color(0xFF, 0xFF, 0xFF, 0x80).getRGB();

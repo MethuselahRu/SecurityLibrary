@@ -1,6 +1,6 @@
-package ru.methuselah.securitylibrary.Data.MessagesLauncher;
+package ru.methuselah.securitylibrary.Data.Launcher;
 
-public class AnswerLauncherDesign
+public class LauncherAnswerDesign
 {
 	// Описание визуальных настроек по группам
 	public static class Background

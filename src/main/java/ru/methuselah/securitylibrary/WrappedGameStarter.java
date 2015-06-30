@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import ru.methuselah.authlib.links.GlobalReplacementList;
+import ru.methuselah.authlib.links.LinksMethuselah;
 import ru.methuselah.securitylibrary.Data.MessagesWrapper.MessageWrappedGame;
 import ru.methuselah.securitylibrary.Hacks.BinaryClassLoader;
 import ru.methuselah.securitylibrary.Hacks.HacksApplicator;
@@ -28,7 +29,7 @@ public class WrappedGameStarter
 	{
 		this.message = message;
 		if(message.replacements == null)
-			message.replacements = new GlobalReplacementList();
+			message.replacements = new LinksMethuselah().buildReplacements();
 		// Load natives and libraries, fix static fields
 		System.out.println("Loading libraries:");
 		final ArrayList<URL> urls = new ArrayList<URL>();
