@@ -1,4 +1,5 @@
 package ru.methuselah.securitylibrary;
+
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -6,7 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import ru.methuselah.authlib.links.GlobalReplacementList;
 import ru.methuselah.authlib.links.LinksMethuselah;
 import ru.methuselah.securitylibrary.Data.MessagesWrapper.MessageWrappedGame;
 import ru.methuselah.securitylibrary.Hacks.BinaryClassLoader;
@@ -48,14 +48,14 @@ public class WrappedGameStarter
 		HacksApplicator.process(message, loader);
 		try
 		{
+			// Prepare new argument list
+			final String[] args = createRealGameArgumentList(message, loader);
+			for(String arg : args)
+				System.out.println("Command line argument: " + arg);
 			// Load main class and start the game
 			final Class mainClass = Class.forName(message.mainClass, true, loader);
 			final Method method = mainClass.getMethod("main", new Class[] { String[].class });
-			method.invoke(null, new Object[]
-			{
-				// String[] args
-				createRealGameArgumentList(message, loader),
-			});
+			method.invoke(null, new Object[] { args });
 			System.out.println("Wrapper has finished it's work.");
 			System.out.println("if the game is not started, it is not my problem!");
 			return 0;
@@ -78,17 +78,15 @@ public class WrappedGameStarter
 	public static String[] createRealGameArgumentList(MessageWrappedGame msg, ClassLoader loader)
 	{
 		final ArrayList<String> result = new ArrayList<String>();
-		addToNewArgs(result, "--gameDir",     msg.gameDir);
-		addToNewArgs(result, "--version",     msg.version);
-		addToNewArgs(result, "--assetsDir",   msg.assetsDir);
-		addToNewArgs(result, "--assetIndex",  msg.assetIndex);
-		addToNewArgs(result, "--username",    msg.username);
-		addToNewArgs(result, "--uuid",        msg.uuid);
-		addToNewArgs(result, "--accessToken", msg.accessToken);
-		result.add("--userType");
-		result.add("mojang");
-		result.add("--userProperties");
-		result.add("{}");
+		addToNewArgs(result, "--gameDir",        msg.gameDir);
+		addToNewArgs(result, "--version",        msg.version);
+		addToNewArgs(result, "--assetsDir",      msg.assetsDir);
+		addToNewArgs(result, "--assetIndex",     msg.assetIndex);
+		addToNewArgs(result, "--username",       msg.username);
+		addToNewArgs(result, "--uuid",           msg.uuid);
+		addToNewArgs(result, "--accessToken",    msg.accessToken);
+		addToNewArgs(result, "--userType",       "mojang");
+		addToNewArgs(result, "--userProperties", "{}");
 		if(msg.arguments != null)
 			result.addAll(Arrays.asList(msg.arguments));
 		try

@@ -14,6 +14,12 @@ public class HackPrivateStaticURLs
 		for(ReplacementListEntrySF replaceTask : tasks)
 			try
 			{
+				if(replaceTask == null)
+					continue;
+				if(replaceTask.targetClass == null || "".equals(replaceTask.targetClass))
+					continue;
+				if(replaceTask.targetField == null || "".equals(replaceTask.targetField))
+					continue;
 				final Class targetClass = Class.forName(replaceTask.targetClass, true, loader);
 				final Field targetField = targetClass.getDeclaredField(replaceTask.targetField);
 				final Class fieldClass = targetField.getType();
@@ -26,6 +32,8 @@ public class HackPrivateStaticURLs
 					modifiersField.setAccessible(true);
 					modifiersField.setInt(targetField, targetField.getModifiers() & ~ Modifier.FINAL);
 				}
+				if(replaceTask.newValue == null || "".equals(replaceTask.newValue))
+					continue;
 				if(fieldClass.equals(URL.class))
 					targetField.set(null, new URL(replaceTask.newValue));
 				if(fieldClass.equals(String.class))
@@ -43,6 +51,7 @@ public class HackPrivateStaticURLs
 			} catch(MalformedURLException ex) {
 			} catch(IllegalArgumentException ex) {
 			} catch(IllegalAccessException ex) {
+			} catch(NullPointerException ex) {
 			}
 		return result;
 	}
