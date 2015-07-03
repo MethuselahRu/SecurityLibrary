@@ -1,5 +1,6 @@
 package ru.methuselah.securitylibrary;
 
+import ru.methuselah.authlib.links.Links;
 import ru.methuselah.authlib.methods.ResponseException;
 import ru.methuselah.authlib.methods.WebMethodCaller;
 import ru.methuselah.securitylibrary.Data.Launcher.LauncherAnswerClients;
@@ -12,24 +13,33 @@ import ru.methuselah.securitylibrary.Data.Methuselah.ProfileInfoResponse;
 
 public class MethuselahPrivate extends WebMethodCaller
 {
-	public static final String urlProfileInfo  = urlBase + "api/profile.php";
-	public static final String urlListProjects = urlBase + "toolbox/listProjects.php";
-	public static final String urlListClients  = urlBase + "toolbox/listProjectClients.php";
-	public static final String urlListServers  = urlBase + "toolbox/listClientServers.php";
-	public static ProfileInfoResponse profileInfo(ProfileInfoPayload payload) throws ResponseException
+	private final String urlProfileInfo;
+	private final String urlListProjects;
+	private final String urlListClients;
+	private final String urlListServers;
+	public MethuselahPrivate(Links links) throws IllegalArgumentException
 	{
-		return action(urlProfileInfo, payload, ProfileInfoResponse.class);
+		super(links);
+		final String urlBase = links.getBaseURL();
+		urlProfileInfo  = urlBase + "/api/profile.php";
+		urlListProjects = urlBase + "/toolbox/listProjects.php";
+		urlListClients  = urlBase + "/toolbox/listProjectClients.php";
+		urlListServers  = urlBase + "/toolbox/listClientServers.php";
 	}
-	public static LauncherAnswerProjects listProjects() throws ResponseException
+	public ProfileInfoResponse profileInfo(ProfileInfoPayload payload) throws ResponseException
 	{
-		return action(urlListProjects, null, LauncherAnswerProjects.class);
+		return webExecute(urlProfileInfo, payload, ProfileInfoResponse.class);
 	}
-	public static LauncherAnswerClients listProjectClients(LauncherMessageGetClients payload) throws ResponseException
+	public LauncherAnswerProjects listProjects() throws ResponseException
 	{
-		return action(urlListClients, payload, LauncherAnswerClients.class);
+		return webExecute(urlListProjects, null, LauncherAnswerProjects.class);
 	}
-	public static LauncherAnswerServers listClientServers(LauncherMessageGetServers payload) throws ResponseException
+	public LauncherAnswerClients listProjectClients(LauncherMessageGetClients payload) throws ResponseException
 	{
-		return action(urlListServers, payload, LauncherAnswerServers.class);
+		return webExecute(urlListClients, payload, LauncherAnswerClients.class);
+	}
+	public LauncherAnswerServers listClientServers(LauncherMessageGetServers payload) throws ResponseException
+	{
+		return webExecute(urlListServers, payload, LauncherAnswerServers.class);
 	}
 }

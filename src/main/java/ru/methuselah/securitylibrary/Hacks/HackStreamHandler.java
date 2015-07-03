@@ -10,14 +10,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
 import java.net.URLStreamHandlerFactory;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.X509TrustManager;
 import ru.methuselah.authlib.links.GlobalReplacementList;
 import ru.methuselah.authlib.links.ReplacementListEntrySH;
+import ru.methuselah.authlib.methods.WebMethodCaller;
 import ru.methuselah.securitylibrary.ProGuardKeep;
 
 @ProGuardKeep
@@ -27,43 +22,17 @@ public class HackStreamHandler extends URLStreamHandler
 	private final Method openConnNoProxy;
 	private final Method openConnProxy;
 	private final ReplacementListEntrySH[] replacements;
-	private static class FakeTrustManager implements X509TrustManager
-	{
-		@Override
-		public void checkClientTrusted(X509Certificate[] chain, String authType)
-		{
-		}
-		@Override
-		public void checkServerTrusted(X509Certificate[] chain, String authType)
-		{
-		}
-		@Override
-		public X509Certificate[] getAcceptedIssuers()
-		{
-			return new X509Certificate[0];
-		}
-	}
-	private static final FakeTrustManager[] trustManagers = { new FakeTrustManager(), };
 	public HackStreamHandler(String protocol, ReplacementListEntrySH[] replacements)
 	{
-		defaultHandler = ("https".equals(protocol)
-			? new sun.net.www.protocol.https.Handler()
-			: new sun.net.www.protocol.http.Handler());
-		try
+		if("https".equals(protocol))
 		{
-			if("https".equals(protocol))
-			{
-				final SSLContext sslContext = SSLContext.getInstance("SSL");
-				sslContext.init(null, trustManagers, null);
-				HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
-			}
-		} catch(NoSuchAlgorithmException ex) {
-		} catch(KeyManagementException ex) {
-		} catch(RuntimeException ex) {
-		}
+			defaultHandler = new sun.net.www.protocol.https.Handler();
+			WebMethodCaller.hackSSL();
+		} else
+			defaultHandler = new sun.net.www.protocol.http.Handler();
 		this.replacements = replacements != null
 			? replacements
-			: GlobalReplacementList.defaultReplacementsSH;
+			: new GlobalReplacementList().replacementsSH;
 		try
 		{
 			openConnNoProxy = defaultHandler.getClass().getDeclaredMethod("openConnection", URL.class);
