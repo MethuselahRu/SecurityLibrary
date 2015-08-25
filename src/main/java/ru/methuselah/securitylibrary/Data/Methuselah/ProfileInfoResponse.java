@@ -1,4 +1,5 @@
 package ru.methuselah.securitylibrary.Data.Methuselah;
+
 import java.util.UUID;
 import ru.methuselah.authlib.UserProvider;
 import ru.methuselah.authlib.UserRole;
