@@ -50,8 +50,6 @@ public class WrappedGameStarter
 		{
 			// Prepare new argument list
 			final String[] args = createRealGameArgumentList(message, loader);
-			for(String arg : args)
-				System.out.println("Command line argument: " + arg);
 			// Load main class and start the game
 			final Class mainClass = Class.forName(message.mainClass, true, loader);
 			final Method method = mainClass.getMethod("main", new Class[] { String[].class });
