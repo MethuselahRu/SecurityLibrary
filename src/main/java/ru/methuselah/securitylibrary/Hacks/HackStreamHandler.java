@@ -75,8 +75,10 @@ public class HackStreamHandler extends URLStreamHandler
 				if(entry.find != null && !"".equals(entry.find) && entry.replace != null)
 					replacedUrl = replacedUrl.replace(entry.find, entry.replace);
 			final boolean hasChanged = !replacedUrl.equals(originalUrl.toString());
+			/*
 			if(hasChanged)
 				System.out.println("[Methuselah] Redirect " + originalUrl.toString() + " to " + replacedUrl);
+			*/
 			return hasChanged ? new URL(replacedUrl) : originalUrl;
 		} catch(MalformedURLException ex) {
 			System.out.println("[Methuselah] Malformed URL exception: " + replacedUrl);
