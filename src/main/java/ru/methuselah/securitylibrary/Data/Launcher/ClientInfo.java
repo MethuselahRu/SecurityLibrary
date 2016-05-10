@@ -11,4 +11,5 @@ public class ClientInfo
 	public String additionalJavaArguments;
 	public String additionalGameArguments;
 	public String contentsFile;
+	public String nativesSubdir;
 }
